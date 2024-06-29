@@ -1,0 +1,211 @@
+<!--GAIRE ANANTA PRASAD-->
+<!--M24W0272-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        /* Styling for the body with a gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffcc00);
+        }
+
+        /* Container styling with a gradient background, padding, and shadow */
+        .todo-container {
+            background: linear-gradient(135deg, #89fffd, #43e97b, #38f9d7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        /* Style for the main heading */
+        h1 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        /* Style for the name paragraph */
+        p {
+            color: #fff;
+        }
+
+        /* Style for the input field */
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* General button styling */
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Specific styling for the Add button */
+        #add-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        /* Remove default list styling */
+        #todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* Style for each todo item */
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Style for todo item buttons */
+        .todo-item button {
+            margin-left: 5px;
+        }
+
+        /* Specific styling for the Complete button */
+        .complete-button {
+            background-color: #ffc107;
+        }
+
+        /* Specific styling for the Remove button */
+        .remove-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Style for completed items */
+        .completed {
+            text-decoration: line-through;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the todo list application -->
+    <div class="todo-container">
+        <!-- Main heading for the todo list -->
+        <h1>Todo List</h1>
+        <!-- Name and ID of the user -->
+        <p>Name: GAIRE ANANTA PRASAD [ID: M24W0272]</p>
+        <!-- Input field for adding a new todo item -->
+        <input type="text" id="new-item" placeholder="Add a new item...">
+        <!-- Button to add a new todo item -->
+        <button id="add-button">Add</button>
+        <!-- Unordered list to display todo items -->
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        // Wait for the DOM to fully load before executing the script
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to the add button, input field, and the todo list
+            const addButton = document.getElementById('add-button');
+            const newItemInput = document.getElementById('new-item');
+            const todoList = document.getElementById('todo-list');
+
+            // Initialize the item count and set the maximum allowed items
+            let itemCount = 0;
+            const maxItems = 5;
+
+            // Add event listener for the add button
+            addButton.addEventListener('click', () => {
+                // Get the value of the input field and trim whitespace
+                const newItem = newItemInput.value.trim();
+                
+                // Check if the input is not empty, the item count is within limits, and the item is not a duplicate
+                if (newItem !== '' && itemCount < maxItems && !isDuplicate(newItem)) {
+                    // Add the new item to the todo list
+                    addItem(newItem);
+                    // Clear the input field
+                    newItemInput.value = '';
+                    // Increment the item count
+                    itemCount++;
+                }
+            });
+
+            /**
+             * Function to check if the item text already exists in the todo list
+             * @param {string} itemText - The text of the item to check for duplication
+             * @returns {boolean} - True if the item is a duplicate, otherwise false
+             */
+            function isDuplicate(itemText) {
+                // Get all the span elements inside the todo items
+                const items = document.querySelectorAll('.todo-item span');
+                // Loop through the items to check for duplication
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].textContent === itemText) {
+                        // Alert the user if the item is a duplicate
+                        alert("Item already exists in the list!");
+                        return true;
+                    }
+                }
+                // Return false if no duplicates are found
+                return false;
+            }
+
+            /**
+             * Function to add a new item to the todo list
+             * @param {string} text - The text of the new item to add
+             */
+            function addItem(text) {
+                // Create a new list item element
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+
+                // Create a span element to hold the item text
+                const span = document.createElement('span');
+                span.textContent = text;
+
+                // Create a complete button and add an event listener to toggle completion
+                const completeButton = document.createElement('button');
+                completeButton.className = 'complete-button';
+                completeButton.textContent = 'Complete';
+                completeButton.addEventListener('click', () => {
+                    span.classList.toggle('completed');
+                });
+
+                // Create a remove button and add an event listener to remove the item
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-button';
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => {
+                    li.remove();
+                    itemCount--;
+                });
+
+                // Append the span, complete button, and remove button to the list item
+                li.appendChild(span);
+                li.appendChild(completeButton);
+                li.appendChild(removeButton);
+                // Append the list item to the todo list
+                todoList.appendChild(li);
+            }
+        });
+    </script>
+</body>
+</html>

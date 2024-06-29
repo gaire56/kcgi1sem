@@ -1,0 +1,78 @@
+<!--GAIRE ANANTA PRASAD-->
+<!--M24W0272-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sorting(GAIRE ANANTA PRASAD)</title>
+</head>
+<body>
+    <h1>Student Sorting GAIRE ANANTA PRASAD M24W0272</h1>
+    <button onclick="sortById()">Sort by ID</button> <!--button for sort for Id-->
+    <button onclick="sortByGrade()">Sort by Grade</button> <!--button for sort for Grade-->
+    <button onclick="sortByFirstName()">Sort by First Name</button> <!--button for sort for FirstName-->
+    <button onclick="sortByLastName()">Sort by Last Name</button> <!--button for sort for LastName-->
+    <div id="output"></div> <!--dir for result-->
+
+
+    <script>
+        // Define an array of students
+        let studentsm24w0272 = [
+            { id: 274, grade: 92, firstName: "Shikha", lastName: "Pandit" },
+            { id: 206, grade: 90, firstName: "Puja", lastName: "Neupane" },
+            { id: 307, grade: 92, firstName: "Sudeep", lastName: "Bhandari" },
+            { id: 544, grade: 91, firstName: "Krishna", lastName: "Pangeni" },
+            { id: 702, grade: 95, firstName: "Lalit", lastName: "Chand" },
+            { id: 102, grade: 93, firstName: "Yogesh", lastName: "Basnet" },
+            { id: 548, grade: 92, firstName: "Prakash", lastName: "Balayer" },
+            { id: 145, grade: 94, firstName: "Saroj", lastName: "Pandey" },
+            { id: 845, grade: 93, firstName: "Prakash", lastName: "Pandey" },
+            { id: 112, grade: 94, firstName: "Sita", lastName: "Dhungana" }
+        ];
+
+        // Function to sort students by ID
+        function sortById() {
+            studentsm24w0272.sort(function(a, b) {
+                return a.id - b.id;
+            });
+            displayStudents();
+        }
+
+        // Function to sort students by Grade
+        function sortByGrade() {
+            studentsm24w0272.sort(function(a, b) {
+                return a.grade - b.grade;
+            });
+            displayStudents();
+        }
+
+        // Function to sort students by First Name
+        function sortByFirstName() {
+            studentsm24w0272.sort(function(a, b) {
+                return a.firstName.localeCompare(b.firstName);
+            });
+            displayStudents();
+        }
+
+        // Function to sort students by Last Name
+        function sortByLastName() {
+            studentsm24w0272.sort(function(a, b) {
+                return a.lastName.localeCompare(b.lastName);
+            });
+            displayStudents();
+        }
+
+        // Function to display students
+        function displayStudents() {
+            let outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "<h2>Sorted Students</h2>";
+            outputDiv.innerHTML += "<ul>";
+            studentsm24w0272.forEach(function(student) {
+                outputDiv.innerHTML += "<li>" + student.id + " - " + student.firstName + " " + student.lastName + " - Grade: " + student.grade + "</li>";
+            });
+            outputDiv.innerHTML += "</ul>";
+        }
+    </script>
+</body>
+</html>

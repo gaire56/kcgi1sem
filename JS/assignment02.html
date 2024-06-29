@@ -1,0 +1,144 @@
+<!--GAIRE ANANTA PRASAD-->
+<!--M24W0272-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Calculator</title>
+    <style>
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #3498db, #9b59b6);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Calculator container styles */
+        .calculatorM24W0272 {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Title styles */
+        h1 {
+            color: #333;
+        }
+
+        /* Button styles */
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        /* Result container styles */
+        .result-containerM24W0272 {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to bottom right, #3498db, #9b59b6);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculatorM24W0272">
+        <h1>Math Calculator</h1>
+        <!-- Buttons for different operations -->
+        <button onclick="calculate('+')">Addition</button> 
+        <button onclick="calculate('-')">Subtraction</button>
+        <button onclick="calculate('*')">Multiplication</button>
+        <button onclick="calculate('/')">Division</button>
+        <button onclick="calculate('^')">Exponentiation</button>
+        <button onclick="calculate('sqrt')">Square Root</button>
+        <button onclick="calculate('log')">Logarithm</button>
+
+        <!-- Result container -->
+        <div class="result-containerM24W0272" id="result-containerM24W0272"></div>
+
+        <script>
+            // Function to check if a number is valid
+            function isValidNumber(num) {
+                return !isNaN(num) && isFinite(num);
+            }
+
+            // Function to perform calculation
+            function performCalculation(operator, x, y) {
+                switch (operator) {
+                    case "+": // for addition
+                        return x + y;
+                    case "-": // for subtraction
+                        return x - y;
+                    case "*": // for multiplication
+                        return x * y;
+                    case "/": // for division
+                        if (y === 0) {
+                            throw new Error("Division by zero");
+                        }
+                        return x / y;
+                    case "^": // for exponentiation
+                        return Math.pow(x, y);
+                    case "sqrt": // for square root
+                        if (x < 0) {
+                            throw new Error("Cannot take square root of a negative number");
+                        }
+                        return Math.sqrt(x);
+                    case "log": // for logarithm
+                        if (x <= 0) {
+                            throw new Error("Invalid logarithm base"); // code for error if the number is zero or smaller the zero
+                        }
+                        return Math.log(x);
+                    default:
+                        throw new Error("Invalid operator"); // send error if something goes error
+                }
+            }
+
+            // Main function for user interaction
+            function calculate(operator) {
+                let x, y;
+
+                // Prompt user for input values
+                do {
+                    x = parseFloat(prompt("Enter the first number:"));
+                } while (!isValidNumber(x));
+
+                // For operations that require two inputs
+                if (operator !== "sqrt" && operator !== "log") {
+                    do {
+                        y = parseFloat(prompt("Enter the second number:"));
+                    } while (!isValidNumber(y));
+                }
+
+                try {
+                    // Perform calculation
+                    let result = performCalculation(operator, x, y);
+
+                    // Display result on the web page
+                    document.getElementById('result-containerM24W0272').innerHTML = `<p>Result: ${result}</p>`;
+                } catch (error) {
+                    alert("Error: " + error.message); //display error if something goes wrong 
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
