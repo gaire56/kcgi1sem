@@ -1,0 +1,145 @@
+/* Gaire Ananta Prasad */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    animation: gradient 10s ease infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#chat-app {
+    width: 400px;
+    background: rgba(42, 42, 114, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+#anantam24w0272 {
+    height: 300px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    padding: 10px;
+    overflow-y: auto;
+    color: #333;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 1;
+}
+
+#anantam24w0272::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Anant.jpg') no-repeat center center/cover;
+    opacity: 0.09;
+    z-index: -1;
+}
+
+#message-input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#anantam24w0272::-webkit-scrollbar {
+    width: 10px;
+}
+
+#anantam24w0272::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+#anantam24w0272::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+}
+
+#anantam24w0272::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Old CSS code merged */
+.chat-container {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.chat-box {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    background-color: #fff;
+}
+
+#message-input {
+    width: calc(100% - 22px);
+    padding: 5px;
+}
+
+#send-button, #view-messages-button {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.stored-messages {
+    margin-top: 20px;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
